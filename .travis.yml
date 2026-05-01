@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.12.10"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - echo "Run tests or app"
+
+after_success:
+  - pip install sonar-scanner-cli
+  - sonar-scanner \
+      -Dsonar.projectKey=nihyakuen \
+      -Dsonar.organization=nihyakuen \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=https://sonarcloud.io \
+      -Dsonar.login=$SONAR_TOKEN
